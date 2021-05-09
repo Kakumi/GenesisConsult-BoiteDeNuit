@@ -1,0 +1,651 @@
+{
+	"info": {
+		"_postman_id": "4b895838-5402-4c10-b654-83b3807887fa",
+		"name": "Genesis Consult Nightclub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Members",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member (ID) Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 404\", function() {\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"test@gmail.com\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 1,\r\n        \"Lastname\": \"Brebion\",\r\n        \"Firstname\": \"Damien\",\r\n        \"Birthdate\": \"1998-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-55\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member (ID)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"+32400000000\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 2,\r\n        \"Lastname\": \"Someone\",\r\n        \"Firstname\": \"Else\",\r\n        \"Birthdate\": \"1993-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-56\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 2\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member 2 Again Invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"+32400000000\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 2,\r\n        \"Lastname\": \"Someone\",\r\n        \"Firstname\": \"Else\",\r\n        \"Birthdate\": \"1993-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-56\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member 2 Again Valid (new Member 3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"+32400000000\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 2,\r\n        \"Lastname\": \"Someone\",\r\n        \"Firstname\": \"Else\",\r\n        \"Birthdate\": \"1993-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-56\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 3\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member Duplicate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"test@gmail.com\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 1,\r\n        \"Lastname\": \"Brebion\",\r\n        \"Firstname\": \"Damien\",\r\n        \"Birthdate\": \"1998-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-55\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Register Member Invalid Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactDetails\": \"test3@gmail.com\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 4,\r\n        \"Lastname\": \"Brebion\",\r\n        \"Firstname\": \"Damien\",\r\n        \"Birthdate\": \"1998-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-5\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 4\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Member 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 204\", function() {\r",
+							"    pm.response.to.have.status(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": 1,\r\n    \"ContactDetails\": \"test@gmail.com\",\r\n    \"IdentityCard\": {\r\n        \"CardNumber\": 1,\r\n        \"Lastname\": \"Brebion\",\r\n        \"Firstname\": \"Damien Updated\",\r\n        \"Birthdate\": \"1998-10-28\",\r\n        \"NationalNumber\": \"998.10.28-173-47\",\r\n        \"ValidFrom\": \"2020-05-08\",\r\n        \"ValidTo\": \"2025-05-08\"\r\n    },\r\n    \"MemberCard\": {\r\n        \"Id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Blacklisted Invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endDate\": \"2008-10-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/blacklist/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"blacklist",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Blacklisted Member 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 204\", function() {\r",
+							"    pm.response.to.have.status(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endDate\": \"2021-10-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/blacklist/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"blacklist",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Is Member 1 Blacklisted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Should return false\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.false;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/blacklist/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"blacklist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Is Member 2 Blacklisted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Should return true\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.true;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/blacklist/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"blacklist",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Can Enter Member 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/access/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"access",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Can Enter Member 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 401\", function() {\r",
+							"    pm.response.to.have.status(401);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/access/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"access",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Member 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 204\", function() {\r",
+							"    pm.response.to.have.status(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return status 404\", function() {\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:44351/api/members"
+		}
+	]
+}
