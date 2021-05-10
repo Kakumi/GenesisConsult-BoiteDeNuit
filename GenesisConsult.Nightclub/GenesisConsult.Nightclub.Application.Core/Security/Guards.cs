@@ -82,19 +82,11 @@ namespace GenesisConsult.Nightclub.Application.Core.Security
             }
         }
 
-        public static void IsDateStillValid(DateTime dateToCheck, string argumentName)
-        {
-            if (DateTime.Compare(dateToCheck, DateTime.Now) < 0)
-            {
-                throw new ArgumentException($"Received date '{argumentName}' is expired.");
-            }
-        }
-
-        public static void IsDateLessThan(DateTime startDate, DateTime endDate, string argumentName)
+        public static void IsDateLessThan(DateTime startDate, DateTime endDate, string argumentName, string endArgumentName)
         {
             if (DateTime.Compare(startDate, endDate) > 0)
             {
-                throw new ArgumentException($"Start date '{argumentName}' is later than end date.");
+                throw new ArgumentException($"Start date '{argumentName}' is later than {endArgumentName}.");
             }
         }
 

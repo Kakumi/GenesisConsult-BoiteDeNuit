@@ -270,6 +270,8 @@ namespace GenesisConsult.Nightclub.Application.API.Controllers
         private void ValidateMember(Member member)
         {
             Guards.IsNotNullOrEmpty(member.ContactDetails, nameof(member.ContactDetails));
+            Guards.IsNotNull(member.IdentityCard, nameof(member.IdentityCard));
+            Guards.IsNotNull(member.MemberCard, nameof(member.MemberCard));
             Guards.IsNotNull(member.IdentityCard.CardNumber, nameof(member.IdentityCard.CardNumber));
             Guards.IsNotNullOrEmpty(member.IdentityCard.Firstname, nameof(member.IdentityCard.Firstname));
             Guards.IsNotNullOrEmpty(member.IdentityCard.Lastname, nameof(member.IdentityCard.Lastname));
@@ -281,8 +283,8 @@ namespace GenesisConsult.Nightclub.Application.API.Controllers
 
             Guards.IsValidContactDetails(member.ContactDetails); //Check email or phone number format
             Guards.IsAdult(member.IdentityCard.Birthdate); //Check age > 18
-            Guards.IsDateLessThan(member.IdentityCard.ValidFrom, member.IdentityCard.ValidTo, nameof(member.IdentityCard.ValidTo));
-            Guards.IsDateStillValid(member.IdentityCard.ValidTo, nameof(member.IdentityCard.ValidTo));
+            Guards.IsDateLessThan(member.IdentityCard.ValidFrom, member.IdentityCard.ValidTo, nameof(member.IdentityCard.ValidTo), nameof(member.IdentityCard.ValidFrom));
+            Guards.IsDateLessThan(DateTime.Now, member.IdentityCard.ValidTo, "Today's date", nameof(member.IdentityCard.ValidTo));
             Guards.IsValidNationalNumber(member.IdentityCard.NationalNumber); //Check national number
         }
 
